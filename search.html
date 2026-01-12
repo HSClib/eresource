@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>搜尋結果</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .result-card { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #2c3e50; transition:0.2s; }
+        .result-card:hover { border-left-color: #e67e22; transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">搜尋系統</a>
+            <a href="index.html" class="btn btn-outline-light btn-sm">回首頁</a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <h4><i class="fas fa-search me-2"></i>搜尋關鍵字：<span id="keyword" class="text-danger fw-bold"></span></h4>
+        <hr>
+        <div id="results-area">
+            </div>
+    </div>
+
+    <script src="resources.js"></script>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            const container = document.getElementById('results-area');
+            
+            if(q) {
+                document.getElementById('keyword').textContent = q;
+                
+                // 核心搜尋邏輯
+                const results = allResources.filter(item => {
+                    return item.title.toLowerCase().includes(q.toLowerCase()) || 
+                           item.desc.toLowerCase().includes(q.toLowerCase());
+                });
+
+                if(results.length > 0) {
+                    results.forEach(item => {
+                        container.innerHTML += `
+                            <div class="result-card">
+                                <h5><span class="badge bg-secondary me-2">${item.category}</span>${item.title}</h5>
+                                <p class="mb-2 text-muted">${item.desc}</p>
+                                <a href="${item.link}" target="_blank" class="btn btn-sm btn-outline-primary">前往資源</a>
+                            </div>
+                        `;
+                    });
+                } else {
+                    container.innerHTML = '<div class="alert alert-warning">找不到相關資源，請嘗試其他關鍵字。</div>';
+                }
+            }
+        };
+    </script>
+</body>
+</html>

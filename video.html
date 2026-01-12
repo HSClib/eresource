@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影音資源 | 新生電子資源網</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 質感寶藍配色系統 (Sapphire & Gold) --- */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #003366, #0056b3);
+            --primary-color: #003366; 
+            --accent-color: #ffc107; 
+            --accent-hover: #e0a800;
+            --light-bg: #f4f6f9;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* 導航列樣式 */
+        .navbar-custom {
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width .3s ease;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--accent-color) !important; }
+
+        /* [恢復] 簡潔標題區塊 */
+        .page-header {
+            background-color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 800;
+            border-left: 6px solid var(--accent-color);
+            padding-left: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* 影音資源專屬卡片 */
+        .video-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            border-top: 4px solid var(--accent-color);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
+            border-top-color: var(--primary-color);
+        }
+        .card-body {
+            padding: 30px 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 播放圖示容器 */
+        .video-icon-box {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 51, 102, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            transition: 0.3s;
+        }
+        .video-card:hover .video-icon-box {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+        
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            line-height: 1.4;
+        }
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        
+        /* 觀看按鈕 */
+        .btn-watch {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 25px;
+            width: 100%;
+            transition: 0.3s;
+            border: none;
+            font-weight: bold;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-watch:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* 搜尋框 */
+        #videoFilter {
+            border-radius: 50px 0 0 50px;
+            padding: 12px 20px;
+            border: 1px solid #dee2e6;
+            background-color: #fff;
+        }
+        #videoFilter:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        .input-group-text {
+            border-radius: 0 50px 50px 0;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            padding-right: 25px;
+            border-left: 0;
+            color: var(--text-muted);
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #002244;
+            color: #b0c4de;
+            border-top: 4px solid var(--accent-color);
+            padding: 50px 0 30px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        footer h6 { color: white; letter-spacing: 1px; }
+        footer i { color: var(--accent-color) !important; }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 20px 50px 0 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <i class="fas fa-book-reader me-2"></i>新生電子資源網
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="database.html">電子資料庫</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ejournals.html">電子期刊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ebooks.html">電子書</a></li>
+                    <li class="nav-item"><a class="nav-link" href="language.html">語言學習</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="video.html">影音資源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="online-course.html">線上教學課程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="archive.html">數位典藏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank">Turnitin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <h2 class="section-title mb-0">影音資源</h2>
+                    <p class="text-muted mt-3 mb-0 ms-4" style="font-size: 1.1rem;">精選學術影片、教學串流與紀錄片，豐富您的視聽學習體驗。</p>
+                </div>
+                <div class="col-md-5 text-end d-none d-md-block">
+                    <i class="fas fa-play-circle opacity-10" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        
+        <div class="row mb-4">
+            <div class="col-lg-8 mx-auto">
+                <div class="d-flex justify-content-between align-items-end mb-2 px-2">
+                    <span class="text-muted small">請輸入關鍵字進行篩選</span>
+                    <span class="badge bg-secondary rounded-pill" id="count-badge">載入中...</span>
+                </div>
+                <div class="input-group input-group-lg shadow-sm">
+                    <input type="text" id="videoFilter" class="form-control border-end-0 ps-4" placeholder="搜尋影音平台 (如: 影音, 公播, 電影)..." onkeyup="filterVideo()">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="video-list-area">
+            </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h6 class="fw-bold mb-3">Copyright © 新生學校財團法人新生醫護管理專科學校圖書館</h6>
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>325桃園市龍潭區中豐路高平段418號</p>
+            <p class="mb-1">
+                <i class="fas fa-phone me-2"></i>TEL: (03)411-7578 轉 250 & 251 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-envelope me-2"></i>E-Mail: lib@hsc.edu.tw
+            </p>
+            <div class="footer-divider">
+                <span class="small me-3 opacity-75">更新日期: 115-01-05</span>
+                <span class="badge bg-secondary rounded-pill">瀏覽次數: 52671</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="resources.js"></script>
+    
+    <script>
+        window.onload = function() {
+            const container = document.getElementById('video-list-area');
+            
+            if (typeof allResources === 'undefined') {
+                container.innerHTML = '<p class="text-danger text-center">無法讀取資料，請檢查 resources.js</p>';
+                return;
+            }
+            
+            // 1. 篩選 "影音資源"
+            const videos = allResources.filter(item => item.category === "影音資源");
+            document.getElementById('count-badge').innerText = `共 ${videos.length} 筆資源`;
+
+            // 2. 生成卡片
+            videos.forEach(item => {
+                // --- 修正重點：保留完整的 desc，並高亮顯示【...】 ---
+                const highlightDesc = item.desc.replace(/(【.*?】)/g, '<span class="text-danger fw-bold">$1</span>');
+
+                const col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6 video-item';
+                col.innerHTML = `
+                    <div class="video-card">
+                        <div class="card-body">
+                            <div class="video-icon-box">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <h5 class="card-title">${item.title}</h5>
+                            <p class="card-text">${highlightDesc}</p>
+                            <a href="${item.link}" target="_blank" class="btn btn-watch">
+                                <i class="fas fa-play me-2"></i> 立即觀看
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        };
+
+        // 搜尋篩選
+        function filterVideo() {
+            const input = document.getElementById('videoFilter').value.toLowerCase();
+            const cards = document.querySelectorAll('.video-item');
+            cards.forEach(card => {
+                const text = card.querySelector('.card-title').innerText.toLowerCase() + ' ' + card.querySelector('.card-text').innerText.toLowerCase();
+                card.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子期刊 | 新生電子資源網</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 質感寶藍配色系統 (與首頁同步) --- */
+        :root {
+            /* 核心主色：深寶藍 -> 皇家藍 */
+            --primary-gradient: linear-gradient(135deg, #003366, #0056b3);
+            --primary-color: #003366; 
+            
+            /* 點綴色：琥珀金 (對比強烈且具高級感) */
+            --accent-color: #ffc107; 
+            --accent-hover: #ffca2c;
+
+            /* 背景色：極淡灰藍 (降低刺眼感) */
+            --light-bg: #f4f6f9;
+            
+            /* 文字顏色 */
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+        }
+
+        body { 
+            background-color: var(--light-bg); 
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* 導航列樣式優化 */
+        .navbar-custom { 
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+            padding: 15px 0;
+        }
+        .navbar-brand { 
+            font-size: 1.5rem; 
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .nav-link { 
+            color: rgba(255, 255, 255, 0.9) !important; 
+            font-weight: 500; 
+            margin: 0 8px; 
+            position: relative; 
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+        
+        /* 導航連結的底線動畫 */
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width .3s ease;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--accent-color) !important; }
+
+        /* --- 電子期刊專屬設計 (Image Card) - 風格同步 --- */
+        .journal-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column; /* 手機預設垂直排列 */
+            overflow: hidden; 
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* 圖片容器 */
+        .journal-img-box {
+            width: 100%;
+            height: 200px; /* 手機版圖片高度 */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 圖片本體設定 */
+        .journal-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: top center; 
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* 滑鼠移過時的特效 */
+        .journal-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
+            transform: translateY(-5px);
+            border-color: rgba(0, 51, 102, 0.1);
+        }
+        .journal-card:hover .journal-img-box img {
+            transform: scale(1.08); 
+        }
+        /* 卡片下方的寶藍色線條 */
+        .journal-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--primary-gradient);
+            transition: width 0.4s ease;
+        }
+        .journal-card:hover::after {
+            width: 100%;
+        }
+
+        /* 內容區塊 */
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .card-action {
+            padding: 25px;
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fcfcfc;
+            border-left: 1px solid #f0f0f0;
+        }
+
+        /* 電腦版排版 (當螢幕大於 768px 時) */
+        @media (min-width: 768px) {
+            .journal-card {
+                flex-direction: row; /* 改為水平排列 */
+                height: 240px; /* 固定高度讓視覺整齊 */
+            }
+            .journal-img-box {
+                width: 35%; /* 圖片佔左邊 35% */
+                height: 100%;
+            }
+            .card-body {
+                width: 45%; /* 文字佔中間 */
+            }
+            .card-action {
+                width: 20%; /* 按鈕佔右邊 */
+                background-color: transparent;
+                border-left: 1px solid #eee;
+            }
+        }
+
+        .btn-read {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 25px;
+            transition: 0.3s;
+            border: none;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .btn-read:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #002244; /* 深海軍藍 */
+            color: #b0c4de;
+            border-top: 4px solid var(--accent-color);
+            padding: 50px 0 30px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        footer h6 { color: white; letter-spacing: 1px; }
+        footer i { color: var(--accent-color) !important; }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 20px 50px 0 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <i class="fas fa-book-reader me-2"></i>新生電子資源網
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="database.html">電子資料庫</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ejournals.html">電子期刊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ebooks.html">電子書</a></li>
+                    <li class="nav-item"><a class="nav-link" href="language.html">語言學習</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html">影音資源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="online-course.html">線上教學課程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="archive.html">數位典藏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank">Turnitin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <div class="d-flex align-items-center mb-4">
+            <div class="bg-warning rounded-circle p-2 me-3" style="width: 10px; height: 10px; background-color: var(--accent-color) !important;"></div>
+            <h2 class="mb-0 fw-bold" style="color: var(--primary-color);">電子期刊</h2>
+            <span class="badge bg-secondary ms-3 rounded-pill" id="count-badge">載入中...</span>
+        </div>
+
+        <div id="journal-list-area">
+            </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h6 class="fw-bold mb-3">Copyright © 新生學校財團法人新生醫護管理專科學校圖書館</h6>
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>325桃園市龍潭區中豐路高平段418號</p>
+            <p class="mb-1">
+                <i class="fas fa-phone me-2"></i>TEL: (03)411-7578 轉 250 & 251 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-envelope me-2"></i>E-Mail: lib@hsc.edu.tw
+            </p>
+            <div class="footer-divider">
+                <span class="small me-3 opacity-75">更新日期: 115-01-05</span>
+                <span class="badge bg-secondary rounded-pill">瀏覽次數: 52671</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="resources.js"></script>
+    
+    <script>
+        window.onload = function() {
+            const container = document.getElementById('journal-list-area');
+            
+            if (typeof allResources === 'undefined') {
+                container.innerHTML = '<p class="text-center text-danger">無法讀取資料，請檢查 resources.js</p>';
+                return;
+            }
+
+            // 1. 篩選電子期刊
+            const journals = allResources.filter(item => item.category === "電子期刊");
+            document.getElementById('count-badge').innerText = `共 ${journals.length} 筆`;
+
+            // 2. 生成寬版卡片
+            journals.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'journal-card';
+                
+                // 判斷是否有圖片，若無則顯示預設圖示 (防呆)
+                let imageHtml = '';
+                if(item.image) {
+                    imageHtml = `<img src="${item.image}" alt="${item.title}">`;
+                } else {
+                    imageHtml = `<div class="d-flex align-items-center justify-content-center h-100 bg-light text-muted"><i class="fas fa-image fa-3x"></i></div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="journal-img-box">
+                        ${imageHtml}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            ${item.title}
+                            <span class="badge bg-light text-dark ms-2 border" style="font-size:0.8rem">雜誌</span>
+                        </h5>
+                        <p class="card-text">${item.desc}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="${item.link}" target="_blank" class="btn btn-read">
+                            閱讀全文 <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        };
+    </script>
+</body>
+</html>

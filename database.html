@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子資料庫列表 | 新生電子資源網</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 質感寶藍配色系統 (Sapphire & Gold) --- */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #003366, #0056b3);
+            --primary-color: #003366; 
+            --accent-color: #ffc107; 
+            --accent-hover: #e0a800;
+            --light-bg: #f4f6f9;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+        }
+
+        body { 
+            background-color: var(--light-bg); 
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* 導航列樣式 */
+        .navbar-custom { 
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+            padding: 15px 0;
+        }
+        .navbar-brand { 
+            font-size: 1.5rem; 
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .nav-link { 
+            color: rgba(255, 255, 255, 0.9) !important; 
+            font-weight: 500; 
+            margin: 0 8px; 
+            position: relative; 
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+        
+        .nav-link::after {
+            content: ''; display: block; width: 0; height: 3px;
+            background: var(--accent-color);
+            transition: width .3s ease; position: absolute; bottom: -5px; left: 0;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--accent-color) !important; }
+
+        /* 表格容器優化 */
+        .table-container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0, 51, 102, 0.08); 
+            border-top: 5px solid var(--accent-color);
+        }
+
+        /* 篩選框 */
+        .search-wrapper { position: relative; }
+        #filterInput {
+            border-radius: 50px;
+            padding: 12px 25px 12px 50px;
+            border: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        #filterInput:focus {
+            background-color: #fff;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(0, 51, 102, 0.1);
+        }
+        .search-icon {
+            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* 表格樣式 */
+        .table { border-collapse: separate; border-spacing: 0 10px; }
+        .table thead th {
+            background-color: var(--primary-color);
+            color: white; border: none; padding: 15px;
+            font-weight: 500; letter-spacing: 0.5px;
+        }
+        .table thead th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+        .table thead th:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+        .table tbody tr {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .table tbody tr:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .table td {
+            border: none; padding: 15px 15px; vertical-align: middle;
+            border-top: 1px solid #f1f1f1;
+        }
+        .table tbody td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+        .table tbody td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+        /* 按鈕樣式 */
+        .btn-go {
+            background-color: var(--primary-color);
+            color: white; border-radius: 50px; padding: 6px 20px;
+            transition: 0.3s; border: none; font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .btn-go:hover {
+            background-color: var(--accent-color); color: var(--primary-color);
+            transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); font-weight: bold;
+        }
+
+        /* 手冊下載按鈕 */
+        .btn-manual {
+            color: var(--text-muted);
+            border: 1px solid #dee2e6;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            background: white;
+            transition: 0.3s;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-manual:hover {
+            border-color: #dc3545; /* 紅色邊框 */
+            color: #dc3545; /* 紅色文字 */
+            background: #fff5f5;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #002244; color: #b0c4de;
+            border-top: 4px solid var(--accent-color);
+            padding: 50px 0 30px 0; margin-top: auto; text-align: center;
+        }
+        footer h6 { color: white; letter-spacing: 1px; }
+        footer i { color: var(--accent-color) !important; }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: inline-block; padding: 20px 50px 0 50px; margin-top: 20px;
+        }
+        
+        /* 特定文字高亮樣式 (紅色粗體) */
+        .highlight-red {
+            color: #dc3545 !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="index.html">
+                <img src="school_logo.png" alt="校徽" style="height: 30px; width: auto;" class="me-2 filter-brightness">
+                新生電子資源網
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="database.html">電子資料庫</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ejournals.html">電子期刊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ebooks.html">電子書</a></li>
+                    <li class="nav-item"><a class="nav-link" href="language.html">語言學習</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html">影音資源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="online-course.html">線上教學課程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="archive.html">數位典藏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank">Turnitin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <div class="d-flex align-items-center mb-4">
+            <div class="bg-warning rounded-circle p-2 me-3" style="width: 10px; height: 10px; background-color: var(--accent-color) !important;"></div>
+            <h2 class="mb-0 fw-bold" style="color: var(--primary-color);">電子資料庫列表</h2>
+            <span class="badge bg-secondary ms-3 rounded-pill" id="count-badge">載入中...</span>
+        </div>
+        
+        <div class="table-container">
+            <div class="search-wrapper mb-4">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="filterInput" class="form-control" placeholder="輸入關鍵字快速篩選 (例如: 護理, EBSCO, 華藝)..." onkeyup="filterTable()">
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th width="5%" class="text-center">#</th>
+                            <th width="20%">資源名稱</th>
+                            <th width="50%">內容說明</th>
+                            <th width="10%" class="text-center">使用手冊</th>
+                            <th width="15%" class="text-center">前往</th>
+                        </tr>
+                    </thead>
+                    <tbody id="db-list-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h6 class="fw-bold mb-3">Copyright © 新生學校財團法人新生醫護管理專科學校圖書館</h6>
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>325桃園市龍潭區中豐路高平段418號</p>
+            <p class="mb-1">
+                <i class="fas fa-phone me-2"></i>TEL: (03)411-7578 轉 250 & 251 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-envelope me-2"></i>E-Mail: lib@hsc.edu.tw
+            </p>
+            <div class="footer-divider">
+                <span class="small me-3 opacity-75">更新日期: 115-01-05</span>
+                <span class="badge bg-secondary rounded-pill">瀏覽次數: 52671</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="resources.js"></script> 
+    
+    <script>
+        // 頁面載入時自動執行
+        window.onload = function() {
+            const tbody = document.getElementById('db-list-body');
+            
+            if (typeof allResources === 'undefined') {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center text-danger">無法讀取資料，請檢查 resources.js</td></tr>';
+                return;
+            }
+
+            // 1. 篩選資料
+            const databases = allResources.filter(item => item.category === "電子資料庫");
+            document.getElementById('count-badge').innerText = `共 ${databases.length} 筆`;
+
+            // 2. 渲染表格
+            databases.forEach((item, index) => {
+                
+                // [功能 1] 特定文字變紅色粗體
+                const targetText = "【臺灣學術電子資源永續發展計畫購置】";
+                let highlightDesc = item.desc;
+                // 使用取代功能，將目標文字包裹在 span 標籤中
+                if (highlightDesc.includes(targetText)) {
+                    highlightDesc = highlightDesc.replace(targetText, `<span class="highlight-red">${targetText}</span>`);
+                }
+
+                // [功能 2] 使用手冊邏輯
+                // 檢查資料中是否有 'manual' 欄位，且不為空
+                let manualBtn = '<span class="text-muted small">-</span>';
+                if (item.manual && item.manual.trim() !== "") {
+                    manualBtn = `
+                        <a href="${item.manual}" target="_blank" class="btn btn-manual" title="下載使用手冊">
+                            <i class="fas fa-file-pdf me-1"></i> 下載
+                        </a>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="text-center fw-bold text-muted">${index + 1}</td>
+                    <td class="fw-bold" style="color: var(--primary-color); font-size: 1.05rem;">
+                        ${item.title}
+                    </td>
+                    <td class="text-muted small" style="line-height: 1.6;">${highlightDesc}</td>
+                    <td class="text-center">
+                        ${manualBtn}
+                    </td>
+                    <td class="text-center">
+                        <a href="${item.link}" target="_blank" class="btn btn-go">
+                            前往 <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        };
+
+        // 頁面內即時篩選功能
+        function filterTable() {
+            const input = document.getElementById('filterInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#db-list-body tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

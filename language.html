@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>語言學習 | 新生電子資源網</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 質感寶藍配色系統 (Sapphire & Gold) - 與首頁同步 --- */
+        :root {
+            /* 核心主色：深寶藍 -> 皇家藍 */
+            --primary-gradient: linear-gradient(135deg, #003366, #0056b3);
+            --primary-color: #003366; 
+            
+            /* 點綴色：琥珀金 */
+            --accent-color: #ffc107; 
+            --accent-hover: #e0a800;
+
+            /* 背景色：極淡灰藍 */
+            --light-bg: #f4f6f9;
+            
+            /* 文字顏色 */
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* 導航列樣式優化 */
+        .navbar-custom {
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+        
+        /* 導航底線動畫 */
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width .3s ease;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--accent-color) !important; }
+
+        /* 語言學習卡片樣式 - 風格同步 */
+        .lang-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        /* 頂部金色漸層線條 */
+        .lang-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        .lang-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
+            border-color: rgba(0, 51, 102, 0.1);
+        }
+
+        .card-body {
+            padding: 30px 25px;
+            flex-grow: 1;
+        }
+        
+        /* 圓形圖示背景 - 改為金色系 */
+        .lang-icon-circle {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 193, 7, 0.1); /* 淺金色底 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent-color); /* 金色圖示 */
+            font-size: 2rem;
+            transition: 0.3s;
+        }
+        .lang-card:hover .lang-icon-circle {
+            background: var(--accent-color);
+            color: var(--primary-color); /* 懸停變深藍色 */
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            line-height: 1.4;
+        }
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* 語言標籤 (Badge) - 配色調整 */
+        .lang-badge {
+            font-size: 0.85rem;
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        /* 英文：深藍底白字 */
+        .bg-eng { background-color: var(--primary-color); color: white; } 
+        /* 日文：金色底深藍字 */
+        .bg-jp { background-color: var(--accent-color); color: var(--primary-color); }  
+        /* 多語：淺灰藍底深藍字 */
+        .bg-multi { background-color: #e9ecef; color: var(--primary-color); } 
+
+        /* 按鈕樣式優化 */
+        .btn-start {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 10px 25px;
+            width: 100%;
+            transition: 0.3s;
+            font-weight: bold;
+            margin-top: auto;
+        }
+        .btn-start:hover {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 搜尋與篩選按鈕優化 */
+        #langFilter {
+            border-radius: 0 50px 50px 0;
+            padding: 12px 20px;
+            border: 1px solid #dee2e6;
+            background-color: #fff;
+        }
+        #langFilter:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        .input-group-text {
+            border-radius: 50px 0 0 50px;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            padding-left: 20px;
+        }
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        /* 日語按鈕改為金色系 */
+        .btn-outline-warning {
+            color: #d39e00;
+            border-color: var(--accent-color);
+        }
+        .btn-outline-warning:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #002244; /* 深海軍藍 */
+            color: #b0c4de;
+            border-top: 4px solid var(--accent-color);
+            padding: 50px 0 30px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        footer h6 { color: white; letter-spacing: 1px; }
+        footer i { color: var(--accent-color) !important; }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 20px 50px 0 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <i class="fas fa-book-reader me-2"></i>新生電子資源網
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="database.html">電子資料庫</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ejournals.html">電子期刊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ebooks.html">電子書</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="language.html">語言學習</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html">影音資源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="online-course.html">線上教學課程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="archive.html">數位典藏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank">Turnitin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="d-flex align-items-center mb-4">
+            <div class="bg-warning rounded-circle p-2 me-3" style="width: 10px; height: 10px; background-color: var(--accent-color) !important;"></div>
+            <h2 class="mb-0 fw-bold" style="color: var(--primary-color);">語言學習資源</h2>
+            <span class="badge bg-secondary ms-3 rounded-pill" id="count-badge">載入中...</span>
+        </div>
+
+        <div class="row mb-5 align-items-center">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text border-end-0"><i class="fas fa-search text-muted"></i></span>
+                    <input type="text" id="langFilter" class="form-control border-start-0 ps-0" placeholder="搜尋語言 (例: 英文, 日文, 檢定)..." onkeyup="filterLang()">
+                </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 me-1" onclick="quickFilter('')">全部</button>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 me-1" onclick="quickFilter('英')">英語</button>
+                <button class="btn btn-sm btn-outline-warning rounded-pill px-3 me-1" onclick="quickFilter('日')">日語</button>
+            </div>
+        </div>
+
+        <div class="row g-4" id="lang-list-area">
+            </div>
+    </div>
+
+    <footer class="mt-5">
+        <div class="container">
+            <h6 class="fw-bold mb-3">Copyright © 新生學校財團法人新生醫護管理專科學校圖書館</h6>
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>325桃園市龍潭區中豐路高平段418號</p>
+            <p class="mb-1">
+                <i class="fas fa-phone me-2"></i>TEL: (03)411-7578 轉 250 & 251 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-envelope me-2"></i>E-Mail: lib@hsc.edu.tw
+            </p>
+            <div class="footer-divider">
+                <span class="small me-3 opacity-75">更新日期: 115-01-05</span>
+                <span class="badge bg-secondary rounded-pill">瀏覽次數: 52671</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="resources.js"></script>
+    
+    <script>
+        window.onload = function() {
+            const container = document.getElementById('lang-list-area');
+            
+            if (typeof allResources === 'undefined') {
+                container.innerHTML = '<p class="text-danger text-center">無法讀取資料，請檢查 resources.js</p>';
+                return;
+            }
+
+            const items = allResources.filter(item => item.category === "語言學習");
+            document.getElementById('count-badge').innerText = `共 ${items.length} 筆`;
+
+            items.forEach(item => {
+                // 自動判斷語言標籤顏色 (配色已更新)
+                let badgeClass = "bg-multi"; 
+                let badgeText = "多語/其他";
+                
+                if (item.desc.includes("【英文】") || item.desc.includes("英語")) {
+                    badgeClass = "bg-eng";
+                    badgeText = "英語學習";
+                } else if (item.desc.includes("【日文】") || item.desc.includes("日語")) {
+                    badgeClass = "bg-jp";
+                    badgeText = "日語學習";
+                } else if (item.desc.includes("【英/日】")) {
+                    badgeClass = "bg-multi";
+                    badgeText = "英日雙語";
+                }
+
+                // 移除說明文字中的【標籤】，讓顯示更乾淨
+                const cleanDesc = item.desc.replace(/【.*?】/g, '');
+
+                const col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6 lang-item';
+                col.innerHTML = `
+                    <div class="lang-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="lang-icon-circle">
+                                    <i class="fas fa-headphones-alt"></i>
+                                </div>
+                                <span class="lang-badge ${badgeClass}">${badgeText}</span>
+                            </div>
+                            
+                            <h5 class="card-title">${item.title}</h5>
+                            <p class="card-text flex-grow-1">${cleanDesc}</p>
+                            
+                            <a href="${item.link}" target="_blank" class="btn btn-start">
+                                開始學習 <i class="fas fa-chevron-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        };
+
+        // 搜尋篩選
+        function filterLang() {
+            const input = document.getElementById('langFilter').value.toLowerCase();
+            const cards = document.querySelectorAll('.lang-item');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        // 按鈕快速篩選
+        function quickFilter(key) {
+            document.getElementById('langFilter').value = key;
+            filterLang();
+        }
+    </script>
+</body>
+</html>

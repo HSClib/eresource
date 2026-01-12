@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數位典藏 | 新生電子資源網</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 質感寶藍配色系統 (Sapphire & Gold) - 與首頁同步 --- */
+        :root {
+            /* 核心主色：深寶藍 -> 皇家藍 */
+            --primary-gradient: linear-gradient(135deg, #003366, #0056b3);
+            --primary-color: #003366; 
+            
+            /* 點綴色：琥珀金 */
+            --accent-color: #ffc107; 
+            --accent-hover: #e0a800;
+
+            /* 背景色：極淡灰藍 */
+            --light-bg: #f4f6f9;
+            
+            /* 文字顏色 */
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* 導航列樣式優化 */
+        .navbar-custom {
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+        
+        /* 導航底線動畫 */
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width .3s ease;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--accent-color) !important; }
+
+        /* 標題區塊 - 設計優化 */
+        .page-header {
+            background-color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 800;
+            border-left: 6px solid var(--accent-color);
+            padding-left: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* 數位典藏卡片設計 - 風格同步 */
+        .resource-card {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* 頂部金色光條 */
+            border-top: 4px solid var(--accent-color);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
+            /* 懸停時頂部線條變深藍 */
+            border-top-color: var(--primary-color);
+            border-color: rgba(0, 51, 102, 0.1);
+        }
+
+        .card-body {
+            padding: 30px 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 圖示容器 - 改為深藍色系 */
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 51, 102, 0.1); /* 淺深藍色底 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color); /* 深藍色圖示 */
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .resource-card:hover .icon-box {
+            background-color: var(--primary-color);
+            color: var(--accent-color); /* 懸停變金色 */
+            transform: scale(1.1);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            flex-grow: 1;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        /* 按鈕樣式 - 改為深藍色 */
+        .btn-visit {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 25px;
+            border: none;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-visit:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* 搜尋列優化 */
+        .search-bar-container {
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+        .form-control-search {
+            border-radius: 50px 0 0 50px;
+            border: 1px solid #dee2e6;
+            border-right: none;
+            padding-left: 25px;
+            background-color: #fff;
+        }
+        .form-control-search:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        .btn-search-icon {
+            border-radius: 0 50px 50px 0;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-left: none;
+            color: var(--text-muted);
+            padding-right: 25px;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #002244; /* 深海軍藍 */
+            color: #b0c4de;
+            border-top: 4px solid var(--accent-color);
+            padding: 50px 0 30px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        footer h6 { color: white; letter-spacing: 1px; }
+        footer i { color: var(--accent-color) !important; }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 20px 50px 0 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <i class="fas fa-book-reader me-2"></i>新生電子資源網
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="database.html">電子資料庫</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ejournals.html">電子期刊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ebooks.html">電子書</a></li>
+                    <li class="nav-item"><a class="nav-link" href="language.html">語言學習</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html">影音資源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="online-course.html">線上教學課程</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="archive.html">數位典藏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank">Turnitin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <h2 class="section-title mb-0">數位典藏</h2>
+                    <p class="text-muted mt-3 mb-0 ms-4" style="font-size: 1.1rem;">精選國內外博物館、美術館與數位展覽資源，提供沉浸式文化體驗。</p>
+                </div>
+                <div class="col-md-5 text-end d-none d-md-block">
+                    <i class="fas fa-landmark opacity-10" style="font-size: 5rem; color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group search-bar-container shadow-sm">
+                    <input type="text" id="archiveSearch" class="form-control form-control-lg form-control-search" placeholder="搜尋博物館或展覽名稱..." onkeyup="filterArchives()">
+                    <span class="input-group-text btn-search-icon"><i class="fas fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="archive-list-container">
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h6 class="fw-bold mb-3">Copyright © 新生學校財團法人新生醫護管理專科學校圖書館</h6>
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>325桃園市龍潭區中豐路高平段418號</p>
+            <p class="mb-1">
+                <i class="fas fa-phone me-2"></i>TEL: (03)411-7578 轉 250 & 251 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-envelope me-2"></i>E-Mail: lib@hsc.edu.tw
+            </p>
+            <div class="footer-divider">
+                <span class="small me-3 opacity-75">更新日期: 115-01-11</span>
+                <span class="badge bg-secondary rounded-pill">瀏覽次數: 12345</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="resources.js"></script>
+
+    <script>
+        // 存放篩選後的資料
+        let currentArchives = [];
+
+        window.onload = function() {
+            // 檢查是否成功讀取 resources.js
+            if (typeof allResources === 'undefined') {
+                console.error("錯誤：找不到 allResources，請檢查 resources.js 路徑");
+                document.getElementById('archive-list-container').innerHTML = '<div class="col-12 text-center text-danger">讀取資料失敗</div>';
+                return;
+            }
+
+            // 1. 篩選 "數位典藏" 類別
+            currentArchives = allResources.filter(item => item.category === "數位典藏");
+
+            // 2. 渲染
+            renderArchives(currentArchives);
+        };
+
+        function renderArchives(data) {
+            const container = document.getElementById('archive-list-container');
+            container.innerHTML = '';
+
+            if(data.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center text-muted py-5"><h5>目前沒有數位典藏資源</h5></div>';
+                return;
+            }
+
+            data.forEach((item, index) => {
+                // 根據內容自動判斷 icon (博物館/藝術/科學)
+                let iconClass = 'fas fa-landmark'; // 預設博物館
+                if(item.title.includes("藝術") || item.title.includes("Art") || item.title.includes("Louvre")) iconClass = 'fas fa-palette';
+                if(item.title.includes("科學") || item.title.includes("Science")) iconClass = 'fas fa-flask';
+                if(item.title.includes("海洋")) iconClass = 'fas fa-fish';
+
+                const col = document.createElement('div');
+                col.className = 'col-lg-3 col-md-6'; // 一排顯示4個 (依據 Bootstrap Grid)
+                
+                col.innerHTML = `
+                    <div class="resource-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="icon-box">
+                                    <i class="${iconClass}"></i>
+                                </div>
+                                <span class="badge bg-light text-secondary border">No.${index + 1}</span>
+                            </div>
+                            <h5 class="card-title">${item.title}</h5>
+                            <p class="card-text">${item.desc}</p>
+                            <a href="${item.link}" target="_blank" class="btn btn-visit">
+                                <i class="fas fa-external-link-alt me-2"></i> 參觀展覽
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        function filterArchives() {
+            const input = document.getElementById('archiveSearch').value.toLowerCase();
+            const filtered = currentArchives.filter(item => 
+                item.title.toLowerCase().includes(input) || 
+                item.desc.toLowerCase().includes(input)
+            );
+            renderArchives(filtered);
+        }
+    </script>
+</body>
+</html>
