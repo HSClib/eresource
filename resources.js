@@ -134,7 +134,7 @@ const allResources = [
     { id: 101, category: "電子書", title: "Hyread 凌網電子書", desc: "台灣最大的圖書館電子書供應商、國內第一個整合圖書館館藏、計次服務及個人購書的雲端圖書館。Hyread提供永久性的館藏與及時性服務，收錄的書籍包括學術、專業、休閒、工具書、語言學習有聲書等各類書籍，以及財經商管、數位資訊、生活、時尚、旅遊、新聞與多媒體等電子雜誌。", link: "https://hsc.idm.oclc.org/login?url=https://hsc.ebook.hyread.com.tw/", image: "ebook.png" },
     { id: 102, category: "電子書", title: "udn讀書館", desc: "「udn讀書館」服務已獲國內外六百間圖書館採購，客戶包括各級學校圖書館、政府機關、企業機構、建設住宅...等。提供讀者、民眾最多暢銷、熱門電子書刊免費借閱，只有擁有手機、平板即可「走到哪、讀到哪」。", link: "https://hsc.idm.oclc.org/login?url=https://reading.udn.com/udnlib/hsc", image: "ebook.png" },
     { id: 103, category: "電子書", title: "iRead eBook 華藝電子書", desc: "華藝於2008年推出iRead eBooks 華藝電子書，精心挑選優良的華文書籍，透過獨家數位化製程讓書籍內容以數位形式推廣；收錄近3000家出版社、逾80,000本繁體中文電子書，成為台灣規模最大的中文電子書平台！", link: "https://hsc.idm.oclc.org/login?url=https://www.airitibooks.com/", image: "ebook.png" },
-    { id: 104, category: "電子書", title: "EBSCOhost eBook Collection", desc: "電子書資料庫收錄法律、政治、商業與經濟等20多個學科主題，截至目前為止共計收錄逾90萬冊電子書籍，也可提供不限人次使用方式，本資料庫高達90%的電子書提供離線下載功能。。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/advanced/filters?autocorrect=y", image: "ebook.png" },
+    { id: 104, category: "電子書", title: "EBSCOhost eBook Collection", desc: "電子書資料庫收錄法律、政治、商業與經濟等20多個學科主題，截至目前為止共計收錄逾90萬冊電子書籍，也可提供不限人次使用方式，本資料庫高達90%的電子書提供離線下載功能。。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/advanced/filters?autocorrect=y&limiters=FT%3AY", image: "ebook.png" },
     { id: 105, category: "電子書", title: "ProQuest Ebook Central", desc: "提供廣泛主題領域的權威全文電子書，以及查找、使用和管理信息的強大工具。學科涵蓋範圍、商業與經濟、計算機與資訊技術、教育、工程與技術、歷史與政治學、人文學科、跨學科和區域研究、語言、文學和語言學法律、國際關係和公共政策生命科學", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/ebookcentral", image: "ebook.png" },
     { id: 106, category: "電子書", title: "Library & Book 數位圖書館", desc: "收錄本館歷年採購的西文電子書，包含社會科學、應用科學、語言文學、哲學、史地...等。", link: "https://lb30.libraryandbook.net/add_Search/MY/New_search/Bao_search", image: "ebook.png" },
     { id: 107, category: "電子書", title: "InfoSci 電子書", desc: "收錄有關 Information Technology 與 Computer Science 主題之西文電子書。", link: "https://www.igi-global.com/gateway/", image: "ebook.png" },
@@ -199,4 +199,5 @@ const allResources = [
     { id: 606, category: "數位典藏", title: "Google Arts & Culture", desc: "（西文）可線上參觀超過70國1200間博物館與美術館。", link: "https://artsandculture.google.com/" },
     { id: 607, category: "數位典藏", title: "The Smithsonian Institution", desc: "（西文）史密森尼學會包括近20座博物館，以及研究中心、美術館。", link: "https://www.si.edu/" },
     { id: 608, category: "數位典藏", title: "Musée du Louvre", desc: "（西文）線上參觀羅浮宮各展覽廳與藝術展。", link: "https://www.louvre.fr/en/online-tours" }
+
 ];
