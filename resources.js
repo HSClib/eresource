@@ -167,7 +167,7 @@ const allResources = [
     { id: 402, category: "影音資源", title: "KMOVIE雲端公播電影網", desc: "提供公播使用的影音串流平台。", link: "https://hsc.idm.oclc.org/login?url=https://kmovie.twedu.com.tw/" },
     { id: 403, category: "影音資源", title: "教室電影院公播大平台", desc: "全國首創將公播及家用版電影置於線上串流的平台。", link: "https://hsc.idm.oclc.org/login?url=https://hsc-app-visionmedia-com-tw.hsc.idm.oclc.org" },
     { id: 404, category: "影音資源", title: "哈佛商業評論全球繁體中文版影音知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄270餘段以上國際級大師演講或對談影音精彩內容。", link: "https://hsc.idm.oclc.org/login?url=https://hbr.infolinker.com.tw/index_video.php" },
-    { id: 405, category: "影音資源", title: "BBC 文化教學影音網", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄AI理工數位、醫學護理以及呼叫助產士影集等三個領域共300部影片。", link: "https://hsc.idm.oclc.org/login?url=https://www.harvest-video.com/" },
+    { id: 405, category: "影音資源", title: "BBC 文化教學影音網", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄AI理工數位、醫學護理以及呼叫助產士影集等三個領域共300部影片。", link: "https://hsc.idm.oclc.org/login?url=https://harvest-video.com/user.do?command=checkIP" },
     { id: 406, category: "影音資源", title: "經理人管理知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>專為企業主管與決策者打造。", link: "https://hsc.idm.oclc.org/login?url=https://elib.infolinker.com.tw/mschool/login_mschool.php" },
     { id: 407, category: "影音資源", title: "國家圖書館數位影音服務系統", desc: "提供未到館的讀者精采、優質的講座、演講、研討會等影音內容。", link: "https://dava.ncl.edu.tw/" },
     { id: 408, category: "影音資源", title: "Scholastic (美國學樂集團YouTube頻道)", desc: "【西文】提供不同年齡層兒童與青少年的故事朗讀、插畫教學影片。", link: "https://www.youtube.com/user/TheScholasticChannel/videos" },
@@ -201,3 +201,4 @@ const allResources = [
     { id: 608, category: "數位典藏", title: "Musée du Louvre", desc: "（西文）線上參觀羅浮宮各展覽廳與藝術展。", link: "https://www.louvre.fr/en/online-tours" }
 
 ];
+
