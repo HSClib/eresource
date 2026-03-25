@@ -129,6 +129,7 @@ const allResources = [
     { id: 48, category: "電子資料庫", title: "臺灣博碩士論文知識加值系統", desc: "免費的學位論文線上檢索系統。", link: "https://ndltd.ncl.edu.tw/" },
     { id: 49, category: "電子資料庫", title: "臺灣藝術教育網", desc: "建置全國藝術教育入口網站及藝術教學平台，並統整文學、音樂、視覺藝術等資源。", link: "https://ed.arte.gov.tw/" },
     { id: 50, category: "電子資料庫", title: "醫學百科", desc: "ADAM 醫學百科全書包括 4,000 多篇關於疾病、測試、症狀、損傷和手術的文章。", link: "https://www.nlm.nih.gov/medlineplus/encyclopedia.html" },
+    { id: 51, category: "電子資料庫", title: "Nature Aging", desc: "《自然-老化》（Nature Aging）是 Nature Portfolio 於 2021 年創刊的頂尖同行評審期刊，專注於老化的生物學機制、相關疾病、轉譯醫學及高齡化社會的社會經濟影響。該期刊旨在提供跨學科平台，涵蓋從基礎研究到臨床介入、改善老年人生活品質的研究，2024年影響因子為19.4。", link: "https://www.nature.com/nataging" },
 
     // --- 電子書資源 (共14筆) ---
     { id: 101, category: "電子書", title: "Hyread 凌網電子書", desc: "台灣最大的圖書館電子書供應商、國內第一個整合圖書館館藏、計次服務及個人購書的雲端圖書館。Hyread提供永久性的館藏與及時性服務，收錄的書籍包括學術、專業、休閒、工具書、語言學習有聲書等各類書籍，以及財經商管、數位資訊、生活、時尚、旅遊、新聞與多媒體等電子雜誌。", link: "https://hsc.idm.oclc.org/login?url=https://hsc.ebook.hyread.com.tw/", image: "ebook.png" },
