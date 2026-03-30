@@ -68,7 +68,7 @@ const allResources = [
         id: 21, 
         category: "電子資料庫", 
         title: "ProQuest Nursing & Allied Health Premium", 
-        desc: "範圍涵蓋細胞學、護理學、營養學、腫瘤學、小兒照顧、放射醫學等70多種護理保健相關主題。", 
+        desc: "是一個綜合性護理與相關健康資料庫，涵蓋細胞學、護理學、營養學、腫瘤學、小兒照顧、放射醫學等 70 多種專業領域。該資料庫提供豐富的學術期刊、實證文獻及教學資源，旨在支援護理人員、醫學生及醫療專業人員的臨床實踐與研究需求。", 
         link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/nahp?accountid=11513",
         manual: "https://drive.google.com/file/d/1avMhGFaemPaWW-KGAsp094fmGDTQWlQi/view"
     },
