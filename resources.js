@@ -25,7 +25,7 @@ const allResources = [
         id: 6, 
         category: "電子資料庫", 
         title: "EBSCO CINAHL with Full Text (8人版)", 
-        desc: "Cumulative Index to Nursing and Allied Health Literature 收錄外文護理學文獻。(使用限制：同時段最大上線人數8人)", 
+        desc: "是護理學與專職醫療領域中最權威的文獻資料庫，提供核心護理期刊、書目、實證照護指引及快速教學課程。它收錄廣泛的全文資源，涵蓋護理學、生物醫學、替代醫學等，是護理人員、學生與研究者進行實證臨床作業不可或缺的工具。(使用限制：同時段最大上線人數8人)", 
         link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&defaultdb=c8h",
         manual: "https://docs.google.com/presentation/d/1adPGU296ryQjmRrSrwlUQddxf4CtStNW/edit?slide=id.p1#slide=id.p1"
     },
