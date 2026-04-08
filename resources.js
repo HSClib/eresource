@@ -129,13 +129,13 @@ const allResources = [
     { id: 48, category: "電子資料庫", title: "臺灣博碩士論文知識加值系統", desc: "由教育部委託國家圖書館建置的國家級學術資源平台，遵循「公開取閱(Open Access)」精神，免費提供全國各校博碩士論文查詢與電子全文下載（自88學年度起），收錄逾140萬筆書目，旨在推動學術研究共享、提升學術能見度。", link: "https://ndltd.ncl.edu.tw/" },
     { id: 49, category: "電子資料庫", title: "臺灣藝術教育網", desc: "建置全國藝術教育入口網站及藝術教學平台，並統整文學、音樂、視覺藝術等資源。", link: "https://ed.arte.gov.tw/" },
     { id: 50, category: "電子資料庫", title: "醫學百科", desc: "ADAM 醫學百科全書包括 4,000 多篇關於疾病、測試、症狀、損傷和手術的文章。", link: "https://www.nlm.nih.gov/medlineplus/encyclopedia.html" },
-    { id: 51, category: "電子資料庫", title: "Nature Aging", desc: "《自然-老化》（Nature Aging）是 Nature Portfolio 於 2021 年創刊的頂尖同行評審期刊，專注於老化的生物學機制、相關疾病、轉譯醫學及高齡化社會的社會經濟影響。該期刊旨在提供跨學科平台，涵蓋從基礎研究到臨床介入、改善老年人生活品質的研究，2024年影響因子為19.4。", link: "https://www.nature.com/nataging" },
+    { id: 51, category: "電子資料庫", title: "Nature Aging", desc: "《自然-老化》（Nature Aging）是 Nature Portfolio 於 2021 年創刊的頂尖同行評審期刊，專注於老化的生物學機制、相關疾病、轉譯醫學及高齡化社會的社會經濟影響。該期刊旨在提供跨學科平台，涵蓋從基礎研究到臨床介入、改善老年人生活品質的研究，2024年影響因子為19.4。", link: "https://hsc.idm.oclc.org/login?url=https://www.nature.com/nataging" },
 { 
         id: 52, 
         category: "電子資料庫", 
         title: "Academic Video Online", 
         desc: "最豐富且全面的多媒體資源，滿足師生在課程中的學習需求。收錄超過 84,000 支影片，其中包含多部奧斯卡金像獎、艾美獎和皮博迪獎的獲獎作品，主題涵蓋：藝術與建築、音樂、舞蹈、戲劇、時尚、人類學、文學、語言、宗教思想、世界史、社會學與社工、心理學、政治時事、刑事司法、教育、STEM、醫護復健、獸醫學、運動、環境研究、亞洲研究、LGBT 研究、媒體研究等領域。", 
-        link: "https://video.alexanderstreet.com/channel/academic-video-online",
+        link: "https://hsc.idm.oclc.org/login?url=https://video.alexanderstreet.com/channel/academic-video-online",
         manual: "https://docs.google.com/presentation/d/1sDD1XuXtx3JCuR0mN0ipLsuJZoGANVd3/edit?usp=sharing&ouid=105633412176766569215&rtpof=true&sd=true"
     },
     
