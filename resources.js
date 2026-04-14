@@ -45,7 +45,7 @@ const allResources = [
     },
     { id: 14, category: "電子資料庫", title: "JSTOR (論文數據庫)", desc: "JSTOR 為全球知名非營利數位圖書館，提供跨學科核心過刊與學術圖書全文。其深厚的人文社科典藏，協助研究者追蹤學術脈絡，是全球學界最受信賴的數位研究環境。", link: "https://www.jstor.org/" },
     { id: 15, category: "電子資料庫", title: "MedicineNet", desc: "依英文字母A~Z查詢。每一個醫學名詞都解釋得相當清楚，提供大眾最新的醫療資訊。", link: "https://www.medicinenet.com/" },
-    { id: 16, category: "電子資料庫", title: "Nature Archive : 1987-1996", desc: "", link: "https://www.nature.com/" },
+    { id: 16, category: "電子資料庫", title: "Nature Archive : 1987-1996", desc: "本資料庫完整收錄 1869 年至今的《Nature》過刊，見證 DNA 結構等重大科學突破。透過高品質數位化文獻，為研究科學史與追蹤全球學術演進提供不可取代的權威資源。", link: "https://www.nature.com/" },
     { id: 17, category: "電子資料庫", title: "On-Line Medical Dictionary", desc: "本詞典是專為醫學專業人士設計的在線檢索系統，收錄疾病、藥物與生物化學等精確術語。提供即時定義與交叉檢索功能，是提升醫護人員溝通效率與學術準確性的重要工具。", link: "https://www.online-medical-dictionary.org/" },
     { 
         id: 18, 
@@ -84,7 +84,7 @@ const allResources = [
     { id: 24, category: "電子資料庫", title: "ProQuest Digitale Bibliothek Deutscher Klassiker", desc: "本資料庫收錄中世紀至 19 世紀核心德語文獻，以權威德意志經典出版社版本為基礎。提供文學、哲學及歷史著作的全文檢索，是德語研究領域最完整的數位典藏資源。", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/dkv?accountid=11513" },
     { id: 25, category: "電子資料庫", title: "ProQuest Kafkas Werke", desc: "本資料庫收錄卡夫卡的小說、信件及日記，並以權威評論版為基礎。提供精確全文檢索與原始文本對照，是研究現代主義文學、卡夫卡生平與創作脈絡的核心數位資源。", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/kafka?accountid=11513" },
     { id: 26, category: "電子資料庫", title: "ProQuest Schillers Werke", desc: "本資料庫以權威《國家版》為基礎，完整收錄席勒的戲劇、詩歌及哲學著作。提供精確的全文檢索與文本分析功能，是研究德語文學與古典主義不可或缺的數位資源。", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/schiller?accountid=11513" },
-    { id: 27, category: "電子資料庫", title: "ProQuest The Vogue Archive", desc: "", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/vogue?accountid=11513" },
+    { id: 27, category: "電子資料庫", title: "ProQuest The Vogue Archive", desc: "本資料庫完整收錄 1892 年至今的美國版《Vogue》。透過高畫質影像重現每頁內容與廣告，是研究時尚演變、性別議題與視覺設計不可或缺的權威數位典藏。", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/vogue?accountid=11513" },
     { id: 28, category: "電子資料庫", title: "ProQuest Political Science Database", desc: "本資料庫收錄政治學、國際關係及公共政策等核心文獻。匯集數百種全文學術期刊、評論與工作論文，為全球政治趨勢分析、法律研究與社會科學探討提供權威支援。", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/politicalscience?accountid=11513" },
     { id: 29, category: "電子資料庫", title: "ProQuest Publicly Available Content Database", desc: "本資料庫匯集全球經同行評審的公開取閱（OA）資源，涵蓋學術期刊、預印本及學位論文。協助研究者一站式檢索高品質免費文獻，全面提升學術資訊的可及性。", link: "https://hsc.idm.oclc.org/login?url=https://www.proquest.com/publiccontent?accountid=11513" },
     { id: 30, category: "電子資料庫", title: "The National Academies Press", desc: "NAP 是美國國家學院的官方出版機構，提供科學、工程與醫學領域的權威報告。其內容多採開放獲取，是全球制定公共政策與科學研究的重要參考資源。", link: "https://www.nationalacademies.org/publications/all" },
