@@ -121,9 +121,7 @@ const allResources = [
     },
     { id: 41, category: "電子資料庫", title: "全國學術版人文及社會科學資料庫", desc: "包含多種國科會歷年購置的國外人文及社會科學資料庫內容。", link: "https://hsc.idm.oclc.org/login?url=http://huso.stpi.narl.org.tw/husoc/husokm" },
     { id: 42, category: "電子資料庫", title: "科技部-科技大觀園", desc: "累積了大量的科普影音、科技新知、科普文章、科普演講及各類科普活動訊息。", link: "https://scitechvista.nat.gov.tw/" },
-    { id: 43, category: "電子資料庫", title: "動腦知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>「動腦雜誌」1977年創刊，扮演著華文地區，廣告行銷媒體圈瞭望者的角色；讀者涵蓋台、中、港、新、馬、美國等地華文廣告界。每月定期提供最熱門的全球產業趨勢、專題報導、全球設計、行銷風向球、流行快報、網路公關案例、業界動態、及創意藍海專欄，是行銷傳播人不可或缺的產業交流資訊平台。
-
-「動腦知識庫」完整收錄「動腦雜誌」自1977年出刊至今的數位 ，化圖文資料精華，是培養成為未來行銷創意人才的專業雜誌。", link: "https://hsc.idm.oclc.org/login?url=https://brian93.lib.ntnu.edu.tw/brain93cgi/ttsweb?@brainkm" },
+    { id: 43, category: "電子資料庫", title: "動腦知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>「動腦雜誌」1977年創刊，扮演著華文地區，廣告行銷媒體圈瞭望者的角色；讀者涵蓋台、中、港、新、馬、美國等地華文廣告界。每月定期提供最熱門的全球產業趨勢、專題報導、全球設計、行銷風向球、流行快報、網路公關案例、業界動態、及創意藍海專欄，是行銷傳播人不可或缺的產業交流資訊平台。「動腦知識庫」完整收錄「動腦雜誌」自1977年出刊至今的數位 ，化圖文資料精華，是培養成為未來行銷創意人才的專業雜誌。", link: "https://hsc.idm.oclc.org/login?url=https://brian93.lib.ntnu.edu.tw/brain93cgi/ttsweb?@brainkm" },
     { id: 44, category: "電子資料庫", title: "國家圖書館期刊文獻資訊網", desc: "包含「中華民國出版期刊指南系統」與「臺灣期刊論文索引系統」。", link: "https://tpl.ncl.edu.tw/" },
     { id: 45, category: "電子資料庫", title: "國家圖書館臺灣記憶系統", desc: "典藏豐富臺灣歷史資源，包括校園記憶、社會風貌、經濟發展等主題。", link: "https://tm.ncl.edu.tw/" },
     { id: 46, category: "電子資料庫", title: "貿協全球資訊網", desc: "本網站提供各國貿易實務與總體經濟資訊。", link: "https://www.taitra.org.tw/" },
