@@ -183,8 +183,8 @@ const allResources = [
     { id: 409, category: "影音資源", title: "Puffin Storytime (英國海鸚說故事時間)", desc: "【西文】由 Puffin Books 提供繪本與青少年讀本的說故事影片。", link: "https://www.youtube.com/user/puffinbooks1/videos" },
 
     // --- 線上教學課程 ---
-    { id: 501, category: "線上教學課程", title: "「國家圖書館遠距學園」數位學習平台資源", desc: "國家圖書館為提供大眾一自主學習之優質環境，並有效提升民眾資訊利用素養。", link: "https://cu.ncl.edu.tw/" },
-    { id: 502, category: "線上教學課程", title: "教育雲", desc: "由教育部推出的「教育雲」入口網，內容包括，數位教材、教學軟體等。", link: "https://cloud.edu.tw/" },
+    { id: 501, category: "線上教學課程", title: "親子天下-翻轉教育", desc: "<span class='text-danger fw-bold'>【如有需求請向圖書館申請】</span>本平台為全台領先的教師專業成長平台，提供多元創新教案、資深名師觀點及實務教學資源。致力於連結第一線教育工作者，分享專業經驗，協助老師跨越教學挑戰，共同翻轉課堂價值，落實以學生為本的教育願景。", link: "https://flipedu.parenting.com.tw/" },
+    { id: 502, category: "線上教學課程", title: "親子天下-數位教育平台", desc: "<span class='text-danger fw-bold'>【如有需求請向圖書館申請】</span>課程一：一週一練習，一年學會冰山理論，李崇建老師的52週薩提爾對話實踐音頻課程。課程二：陳品皓的青少年黃金溝通術。課程三：中小學生和老師家長必備的　10堂法律自保課。", link: "https://education.parenting.com.tw/" },
     { id: 503, category: "線上教學課程", title: "零到一學中文", desc: "教育部與國立臺灣大學合作攜手推出「零到一學中文」中文學習線上課程。", link: "https://www.coursera.org/learn/learn-chinese" },
     { id: 504, category: "線上教學課程", title: "教育部美感教育資源整合平台", desc: "教育部美感與設計課程創新計畫。", link: "https://aew.moe.edu.tw/" },
     { id: 505, category: "線上教學課程", title: "臺灣大學開放式課程", desc: "提供社會人士免費上網自我學習。", link: "http://ocw.aca.ntu.edu.tw/ntu-ocw/" },
@@ -198,6 +198,8 @@ const allResources = [
     { id: 513, category: "線上教學課程", title: "Open Culture", desc: "提供1500種免費線上課程，由世界頂尖大學如史丹佛、耶魯等提供。", link: "https://www.openculture.com/freeonlinecourses" },
     { id: 514, category: "線上教學課程", title: "Oxford OWL", desc: "提供3至11歲以上學童有趣好玩的互動教學活動。", link: "https://www.oxfordowl.co.uk/" },
     { id: 515, category: "線上教學課程", title: "National Museum of Australia - Learn", desc: "提供各種學校團體參觀活動與課堂教學資源。", link: "https://www.nma.gov.au/learn" },
+    { id: 516, category: "線上教學課程", title: "「國家圖書館遠距學園」數位學習平台資源", desc: "國家圖書館為提供大眾一自主學習之優質環境，並有效提升民眾資訊利用素養。", link: "https://cu.ncl.edu.tw/" },
+    { id: 517, category: "線上教學課程", title: "教育雲", desc: "由教育部推出的「教育雲」入口網，內容包括，數位教材、教學軟體等。", link: "https://cloud.edu.tw/" },
 
     // --- 數位典藏 ---
     { id: 601, category: "數位典藏", title: "國立臺灣科學教育館-臺灣網路科教館", desc: "豐富的大眾科學講座影音記錄、自製之優質教案。", link: "https://www.ntsec.gov.tw/" },
