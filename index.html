@@ -1,557 +1,416 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 智慧學習專區 | 新生醫專圖書館</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>新生電子資源網 | 智慧圖書館入口</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* --- 全域變數設定 --- */
+        /* --- 質感寶藍配色系統 (Sapphire & Gold) --- */
         :root {
-            --primary-color: #006d77; 
-            --secondary-color: #83c5be;
-            --accent-color: #ffddd2;
-            --text-main: #2d3436;
-            --text-light: #636e72;
-            --bg-body: #edf6f9;
-            --white: #ffffff;
+            /* 核心主色：深寶藍 -> 皇家藍 */
+            --primary-gradient: linear-gradient(135deg, #003366, #0056b3);
+            --primary-color: #003366; 
+            
+            /* 點綴色：琥珀金 (對比強烈且具高級感) */
+            --accent-color: #ffc107; 
+            --accent-hover: #ffca2c;
 
-            --tag-hot: #e76f51;
-            --tag-code: #2a9d8f;
-            --tag-read: #e9c46a;
-            --tag-agent: #264653;
-            --tag-gray: #95a5a6;
-            --tag-blue: #3498db;
-        }
-
-        /* --- 基礎排版 --- */
-        body { margin: 0; font-family: "Microsoft JhengHei", "Helvetica Neue", sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
-        a { text-decoration: none; transition: 0.3s; color: inherit; }
-        ul { list-style: none; padding: 0; }
-        
-        /* --- 頂部導航列 --- */
-        .top-bar { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
-        
-        .logo-area { display: flex; align-items: center; gap: 15px; font-size: 1.3rem; font-weight: bold; color: var(--primary-color); cursor: pointer; }
-        .logo-area:hover { opacity: 0.8; }
-        .logo-area img { height: 50px; width: auto; } 
-
-        .nav-links a { color: var(--text-main); margin-left: 20px; font-weight: 500; font-size: 1rem; }
-        .nav-links a:hover { color: var(--primary-color); }
-
-        /* --- Hero Banner --- */
-        .hero-banner-container {
-            width: 100%;
-            max-width: 1200px; 
-            margin: 20px auto 40px auto;
-            border-radius: 12px;
-            overflow: hidden; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-        }
-        .hero-banner-img {
-            width: 100%;
-            height: auto; 
-            display: block; 
+            /* 背景色：極淡灰藍 (降低刺眼感) */
+            --light-bg: #f4f6f9;
+            
+            /* 文字顏色 */
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
         }
 
-        /* --- 版面配置 --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 250px 1fr; gap: 40px; }
-        
-        .sidebar-box { background: var(--white); padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .sidebar-box h3 { border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; margin-top: 0; color: var(--primary-color); font-size: 1.1rem; }
-        .menu-list li { margin-bottom: 10px; border-bottom: 1px dashed #eee; padding-bottom: 5px; }
-        .menu-list li:last-child { border: none; }
-        .menu-list a { color: var(--text-light); display: flex; align-items: center; gap: 8px; }
-        .menu-list a:hover { color: var(--primary-color); transform: translateX(5px); }
+        body {
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
 
-        section { margin-bottom: 60px; scroll-margin-top: 100px; }
-        .section-title { display: flex; align-items: center; gap: 10px; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 20px; border-left: 5px solid var(--secondary-color); padding-left: 15px; }
-        
-        /* 基礎知識卡片 */
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .feature-card { background: var(--white); padding: 25px; border-radius: 12px; border: 1px solid #eee; transition: 0.3s; position: relative; overflow: hidden; }
-        .feature-card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--secondary-color); }
-        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .feature-card h4 { margin-top: 0; font-size: 1.2rem; color: #333; }
-        .feature-card i { color: var(--secondary-color); font-size: 2rem; margin-bottom: 15px; display: block; }
+        /* 導航列優化：深色沈穩 */
+        .navbar-custom {
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+            padding: 15px 0; /* 增加高度讓視覺更舒適 */
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width .3s ease;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
 
-        /* --- 資源卡片樣式 --- */
-        .resource-grid { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 20px; 
+        /* 輪播圖微調 */
+        .carousel-item {
+            height: 480px; /* 稍微增高讓大氣感出來 */
+            background-color: #000; /* 圖片載入前的底色 */
         }
-        
-        .res-card { 
-            background: var(--white); 
-            border-radius: 12px; 
-            overflow: hidden; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
-            transition: 0.3s; 
-            display: flex; 
-            flex-direction: column; 
-            border-top: 4px solid transparent; 
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            opacity: 0.9; /* 稍微壓暗圖片，讓文字更凸顯 */
         }
-        .res-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); border-top-color: var(--secondary-color); }
-        
-        .res-header { 
-            padding: 20px 20px 10px 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            justify-content: flex-start;
-        }
-        .res-title-group { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            width: 100%; 
-            margin-bottom: 8px; 
-        }
-        .res-logo { 
-            width: 36px; height: 36px; 
-            border-radius: 8px; 
-            object-fit: contain; 
-            background: #fff; 
-            border: 1px solid #eee; 
-            padding: 2px; 
-            flex-shrink: 0;
-        }
-        .res-title { 
-            font-size: 1.1rem; 
-            font-weight: bold; 
-            color: #333; 
-            line-height: 1.3;
-        }
-        
-        .res-body { 
-            padding: 0 20px 25px 20px; 
-            flex-grow: 1; 
-        }
-        .res-body p { 
-            color: #666; 
-            font-size: 0.9rem; 
-            margin-top: 5px; 
-            line-height: 1.6; 
-        }
-        .res-footer { padding: 15px 20px; background: #f8f9fa; border-top: 1px solid #eee; text-align: right; }
-        
-        .btn-go { background: var(--primary-color); color: white; padding: 6px 15px; border-radius: 50px; font-weight: bold; font-size: 0.85rem; display: inline-block; }
-        .btn-go:hover { background: #004e57; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        
-        .tag { 
-            font-size: 0.75rem; 
-            padding: 4px 10px; 
-            border-radius: 12px; 
-            color: white; 
-            font-weight: bold; 
-            white-space: nowrap; 
-            line-height: 1.5; 
+        .carousel-caption-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px 50px;
+            border-radius: 4px; /* 改為小圓角，更顯專業 */
             display: inline-block;
-            margin-left: 0; 
-        }
-        .tag-hot { background-color: var(--tag-hot); }
-        .tag-code { background-color: var(--tag-code); }
-        .tag-read { background-color: var(--tag-read); }
-        .tag-gray { background-color: var(--tag-gray); }
-        .tag-blue { background-color: var(--tag-blue); }
-        .tag-agent { background-color: var(--tag-agent); }
-
-        /* --- 影片卡片 --- */
-        .video-grid { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 20px; 
-        }
-        .video-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .video-thumbnail-container { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            cursor: pointer; 
-            background: #000;
-        }
-        .video-thumbnail-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: 0.3s; }
-        .video-thumbnail-container:hover img { opacity: 0.7; }
-        .play-button-overlay {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 3rem; color: rgba(255,255,255,0.8); z-index: 2; transition: 0.3s;
-        }
-        .video-thumbnail-container:hover .play-button-overlay { color: var(--secondary-color); transform: translate(-50%, -50%) scale(1.1); }
-        .video-thumbnail-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; }
-        .video-title { padding: 12px; font-weight: bold; font-size: 0.95rem; color: #333; border-top: 1px solid #eee; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.8em; }
-
-        /* --- 查看更多按鈕區 --- */
-        .more-container { 
-            text-align: right; 
-            margin-top: 20px; 
-            padding-right: 10px; 
-        }
-        .btn-more {
-            display: inline-block;
-            background-color: var(--white);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             color: var(--primary-color);
-            border: 1px solid var(--primary-color); 
-            padding: 5px 15px; 
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.85rem; 
-            transition: 0.3s;
+            margin-bottom: 60px;
+            border-left: 5px solid var(--accent-color); /* 左側金線裝飾 */
         }
-        .btn-more:hover {
+
+        /* 搜尋區塊：玻璃擬態感 */
+        .search-overlay {
+            margin-top: -60px; 
+            position: relative;
+            z-index: 10;
+        }
+        .search-box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 51, 102, 0.1); 
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .btn-search {
             background-color: var(--primary-color);
-            color: var(--white);
-            box-shadow: 0 3px 10px rgba(0,109,119,0.2);
+            color: white;
+            border-radius: 0 8px 8px 0;
+            border: none;
+            transition: 0.3s;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        .btn-search:hover {
+            background-color: #004488;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+        }
+        
+        /* 資源卡片：現代簡約風 */
+        .category-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05); /* 極細邊框增加精緻度 */
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
+            border-color: rgba(0, 51, 102, 0.1);
+        }
+        /* 卡片下方的寶藍色線條 */
+        .category-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--primary-gradient);
+            transition: width 0.4s ease;
+        }
+        .category-card:hover::after {
+            width: 100%;
         }
 
-        .alert-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 20px; border-radius: 8px; display: flex; gap: 20px; align-items: start; }
-        .alert-box i { font-size: 2rem; }
-
-        /* 頁尾樣式 */
-        footer { background: #2d3436; color: #ffffff; padding: 40px 0; margin-top: 60px; text-align: center; }
-        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; line-height: 1.8; }
-        .footer-content p { margin: 5px 0; color: #ffffff; }
-        .footer-content a { color: #ffffff; text-decoration: none; border-bottom: 1px dashed #ffffff; }
-        .footer-content a:hover { color: var(--secondary-color); border-bottom-style: solid; }
-
-        /* RWD */
-        @media (max-width: 1024px) {
-            .video-grid, .resource-grid { grid-template-columns: repeat(2, 1fr); }
+        .category-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            /* 改為寶藍色漸層 */
+            background: -webkit-linear-gradient(45deg, #003366, #007bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s;
         }
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            .sidebar-box, .nav-links { display: none; }
-            .hero-banner-container { margin-top: 0; border-radius: 0; }
-            .video-grid, .resource-grid { grid-template-columns: 1fr; }
-            .more-container { text-align: center; } 
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .category-card h5 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        /* 頁尾：深色底更穩重 */
+        footer {
+            background-color: #002244; /* 深海軍藍 */
+            color: #b0c4de; /* 淺灰藍文字 */
+            padding: 50px 0 30px 0;
+            margin-top: auto;
+            text-align: center;
+            border-top: 4px solid var(--accent-color); /* 頂部金線 */
+        }
+        footer h6 {
+            color: white;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        footer i {
+            color: var(--accent-color) !important;
+        }
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 20px 50px 0 50px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <nav class="top-bar">
-        <div class="nav-container">
-            <a href="index.html" class="logo-area">
-                <img src="hsclogo.png" alt="Logo">
-                <span>新生醫專圖書館</span>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container-fluid px-4"> 
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="index.html">
+                <img src="school_logo.png" alt="校徽" style="height: 30px; width: auto;" class="me-2 filter-brightness">
+                新生電子資源網
             </a>
-            <div class="nav-links">
-                <a href="basics.html">基礎知識</a> 
-                <a href="ebooks.html">電子書</a>
-                <a href="library_books.html">實體館藏</a> <a href="courses.html">自學資源</a>
-                <a href="videos.html">教學影片</a>
-                <a href="tools.html">工具庫</a>
-                <a href="#ethics">學術倫理</a>
-                <a href="https://lib.hsc.edu.tw/" target="_blank"><i class="fa-solid fa-house"></i> 回圖書館首頁</a>
+            
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="database.html">電子資料庫</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ejournals.html">電子期刊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ebooks.html">電子書</a></li>
+                    <li class="nav-item"><a class="nav-link" href="language.html">語言學習</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html">影音資源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="online-course.html">線上教學課程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="archive.html">數位典藏</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank">Turnitin</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <div class="hero-banner-container">
-        <img src="image_3.png" alt="AI 智慧資源專區" class="hero-banner-img">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+                <img src="hsceresource.png" class="d-block w-100" alt="HSC E-Resources Banner">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption-box">
+                        <h1 class="fw-bold">數位學習，智慧領航</h1>
+                        <p class="fs-5 mb-0">整合多元學術資源，讓知識觸手可及</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1600&q=80" class="d-block w-100" alt="Library">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption-box">
+                        <h1 class="fw-bold">探索知識，成就未來</h1>
+                        <p class="fs-5 mb-0">HSC Library - 您的學術最佳夥伴</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80" class="d-block w-100" alt="Study">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption-box">
+                        <h1 class="fw-bold">隨時隨地，學習無界限</h1>
+                        <p class="fs-5 mb-0">海量電子書與期刊，等您來挖掘</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
     </div>
 
-    <div class="container">
-        
-        <aside>
-            <div class="sidebar-box">
-                <h3><i class="fa-solid fa-compass"></i> 快速導引</h3>
-                <ul class="menu-list">
-                    <li><a href="basics.html"><i class="fa-solid fa-circle-info"></i> 什麼是 AI?</a></li>
-                    <li><a href="ebooks.html"><i class="fa-solid fa-book-bookmark"></i> 電子書推薦</a></li>
-                    <li><a href="library_books.html"><i class="fa-solid fa-book"></i> 實體館藏推薦</a></li> <li><a href="courses.html"><i class="fa-solid fa-graduation-cap"></i> 免費課程</a></li>
-                    <li><a href="videos.html"><i class="fa-solid fa-video"></i> 精選影片</a></li>
-                    <li><a href="tools.html"><i class="fa-solid fa-toolbox"></i> 實用工具</a></li>
-                    <li><a href="#ethics"><i class="fa-solid fa-scale-balanced"></i> 引用規範</a></li>
-                </ul>
+    <div class="container search-overlay">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="search-box text-center">
+                    <h3 class="mb-4 fw-bold" style="color: var(--primary-color);">今天想學點什麼？</h3>
+                    <div class="input-group input-group-lg">
+                        <input type="text" id="searchInput" class="form-control border-end-0 rounded-start-2 ps-4" placeholder="輸入關鍵字 (如: 護理, 教育, 醫學)..." onkeypress="handleEnter(event)" style="border-color: #dee2e6;">
+                        <button class="btn btn-search fw-bold" onclick="doSearch()">
+                            <i class="fas fa-search me-2"></i> 搜尋
+                        </button>
+                    </div>
+                    <div class="mt-3 text-muted small">
+                        <span class="badge bg-secondary me-2">熱門關鍵字：</span>
+                        <a href="#" class="text-decoration-none text-muted me-2 hover-link">Journals學術期刊資料庫</a>
+                        <a href="#" class="text-decoration-none text-muted me-2 hover-link">UDN讀書館</a>
+                        <a href="#" class="text-decoration-none text-muted hover-link">KONO libraries</a>
+                        <a href="#" class="text-decoration-none text-muted hover-link">KMOVIE雲端公播電影網</a>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="sidebar-box">
-                <h3><i class="fa-solid fa-bullhorn"></i> 最新公告</h3>
-                <ul class="menu-list">
-		    <li><small style="color:#888">2026/05/07</small><br>新增 4 部 教學影片</li> 
- 		    <li><small style="color:#888">2026/03/12</small><br>新增 4 部 教學影片</li> 
-                    <li><small style="color:#888">2026/01/26</small><br>新增 20 本 AI 熱門實體圖書</li> 
-		    <li><small style="color:#888">2026/01/22</small><br>更新自學平台與工具</li>
-                    <li><small style="color:#888">2026/01/22</small><br>更新 2 部 Gemini 教學影片</li>
-                    <li><small style="color:#888">2026/01/01</small><br>AI 專區正式上線！</li>
-                </ul>
+    <div class="container py-5 mt-3">
+        <div class="row g-4">
+            <div class="col-lg-3 col-6">
+                <a href="database.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-database category-icon"></i>
+                        <h5>電子資料庫</h5>
+                        <p class="text-muted small mt-2">學術期刊、論文檢索</p>
+                    </div>
+                </a>
             </div>
-        </aside>
-
-        <main>
             
-            <section id="basics">
-                <h2 class="section-title"><i class="fa-solid fa-brain"></i> AI 基礎知識 (Basics)</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <i class="fa-solid fa-lightbulb"></i>
-                        <h4>Generative AI</h4>
-                        <p>生成式 AI 不只是搜尋引擎，它能透過學習數據，創造出全新的文字、影像或程式碼。</p>
+            <div class="col-lg-3 col-6">
+                <a href="ejournals.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-newspaper category-icon"></i>
+                        <h5>電子期刊</h5>
+                        <p class="text-muted small mt-2">瀏覽最新學術刊物</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-comments"></i>
-                        <h4>Prompt (提示詞)</h4>
-                        <p>與 AI 溝通的指令。記住公式：<b>角色 + 任務 + 背景 + 限制</b>，能得到更精準的回覆。</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <h4>Hallucination (幻覺)</h4>
-                        <p>AI 偶爾會自信地說出錯誤資訊。在學術研究領域，<b>務必進行事實查核</b>。</p>
-                    </div>
-                </div>
-                <div class="more-container">
-                    <a href="basics.html" class="btn-more">
-                        閱讀完整基礎知識 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </section>
-
-            <section id="learning">
-                <h2 class="section-title"><i class="fa-solid fa-chalkboard-user"></i> 優質自學平台</h2>
-                <div class="resource-grid">
-                    
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=cloud.google.com&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">Google Cloud</div>
-                            </div>
-                            <span class="tag tag-hot">入門必修</span>
-                        </div>
-                        <div class="res-body">
-                            <p>Google 官方提供的免費課程，從最基礎的大型語言模型原理解說起。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://www.cloudskillsboost.google/paths/118?locale=zh_TW" target="_blank" class="btn-go">開始上課 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=coursera.org&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">Coursera</div>
-                            </div>
-                            <span class="tag tag-read">通識好課</span>
-                        </div>
-                        <div class="res-body">
-                            <p>由 AI 教父 Andrew Ng 開設，不需工程背景也能聽懂 AI 的影響。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" class="btn-go">開始上課 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=moocs.moe.edu.tw&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">Taiwan MOOCs</div>
-                            </div>
-                            <span class="tag tag-blue">教育部</span>
-                        </div>
-                        <div class="res-body">
-                            <p>教育部磨課師平台，匯集台灣各大專院校的優質線上課程。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://moocs.moe.edu.tw/moocs/#/home" target="_blank" class="btn-go">開始上課 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">全民 AI 通識課</div>
-                            </div>
-                            <span class="tag tag-blue">數位部</span>
-                        </div>
-                        <div class="res-body">
-                            <p>數位發展部推出的 AI 素養課程，適合大眾了解人工智慧。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://www.youtube.com/playlist?list=PLTLOS370gPgZY7wOboV1E1eF9EIC9rnEa" target="_blank" class="btn-go">開始上課 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="more-container">
-                    <a href="courses.html" class="btn-more">
-                        查看更多自學資源 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </section>
-
-            <section id="videos">
-                <h2 class="section-title"><i class="fa-solid fa-play-circle"></i> 精選教學影片</h2>
-                <div class="video-grid">
-                    <div class="video-card">
-                <div class="video-thumbnail-container" onclick="loadVideo(this, 'Lq-wedAiffo')">
-                    <img src="https://img.youtube.com/vi/Lq-wedAiffo/maxresdefault.jpg">
-                    <div class="play-button-overlay"><i class="fa-regular fa-circle-play"></i></div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">Claude Cowork/Code保姆級完整教學</div>
-                                    </div>
+                </a>
             </div>
 
-            <!-- 18 -->
-            <div class="video-card">
-                <div class="video-thumbnail-container" onclick="loadVideo(this, 'JtvSCXz3A6w')">
-                    <img src="https://img.youtube.com/vi/JtvSCXz3A6w/maxresdefault.jpg">
-                    <div class="play-button-overlay"><i class="fa-regular fa-circle-play"></i></div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">NotebookLM 0-1終極攻略</div>
-                                    </div>
+            <div class="col-lg-3 col-6">
+                <a href="ebooks.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-book-open category-icon"></i>
+                        <h5>電子書</h5>
+                        <p class="text-muted small mt-2">udn、HyRead 線上閱讀</p>
+                    </div>
+                </a>
             </div>
 
-            <!-- 19 -->
-            <div class="video-card">
-                <div class="video-thumbnail-container" onclick="loadVideo(this, 'xo7dE80ktu4')">
-                    <img src="https://img.youtube.com/vi/xo7dE80ktu4/maxresdefault.jpg">
-                    <div class="play-button-overlay"><i class="fa-regular fa-circle-play"></i></div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">Claude Code 零基礎入門</div>
-                                    </div>
+            <div class="col-lg-3 col-6">
+                <a href="language.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-language category-icon"></i>
+                        <h5>語言學習</h5>
+                        <p class="text-muted small mt-2">空中英語、多益測驗</p>
+                    </div>
+                </a>
             </div>
 
-            <!-- 20 -->
-            <div class="video-card">
-                <div class="video-thumbnail-container" onclick="loadVideo(this, 'MtTSmOIpUDA')">
-                    <img src="https://img.youtube.com/vi/MtTSmOIpUDA/maxresdefault.jpg">
-                    <div class="play-button-overlay"><i class="fa-regular fa-circle-play"></i></div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">【Gemini 教學】11 分鐘從0到高手！</div>
-                                   </div>
+            <div class="col-lg-3 col-6">
+                <a href="video.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-play-circle category-icon"></i>
+                        <h5>影音資源</h5>
+                        <p class="text-muted small mt-2">BBC、教學影片串流</p>
+                    </div>
+                </a>
             </div>
-                </div>
-                <div class="more-container">
-                    <a href="videos.html" class="btn-more">
-                        看更多教學影片 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </section>
 
-            <section id="tools">
-                <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> 免費實用工具</h2>
-                <div class="resource-grid">
-                    
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">Perplexity</div>
-                            </div>
-                            <span class="tag tag-read">學術推薦</span>
-                        </div>
-                        <div class="res-body">
-                            <p>附帶引用的 AI 搜尋引擎。整理出精準答案並標註來源。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://www.perplexity.ai/" target="_blank" class="btn-go">前往使用 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
+            <div class="col-lg-3 col-6">
+                <a href="online-course.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-chalkboard-teacher category-icon"></i>
+                        <h5>線上教學課程</h5>
+                        <p class="text-muted small mt-2">數位學習平台入口</p>
                     </div>
+                </a>
+            </div>
 
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">ChatGPT</div>
-                            </div>
-                            <span class="tag tag-gray">文書助手</span>
-                        </div>
-                        <div class="res-body">
-                            <p>OpenAI 開發的經典工具。擁有強大的語意理解能力。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://chat.openai.com/" target="_blank" class="btn-go">前往使用 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
+            <div class="col-lg-3 col-6">
+                <a href="archive.html" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-landmark category-icon"></i>
+                        <h5>數位典藏</h5>
+                        <p class="text-muted small mt-2">校史、珍貴文獻</p>
                     </div>
+                </a>
+            </div>
 
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">Gemini</div>
-                            </div>
-                            <span class="tag tag-hot">Google最強</span>
-                        </div>
-                        <div class="res-body">
-                            <p>Google 的多模態 AI。擅長處理長文本分析與搜尋。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://gemini.google.com/" target="_blank" class="btn-go">前往使用 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
+            <div class="col-lg-3 col-6">
+                <a href="https://www.turnitin.com/login_page.asp?lang=zh_tw" target="_blank" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="fas fa-clipboard-check category-icon"></i>
+                        <h5>Turnitin</h5>
+                        <p class="text-muted small mt-2">論文原創性比對系統</p>
                     </div>
-
-                    <div class="res-card">
-                        <div class="res-header">
-                            <div class="res-title-group">
-                                <img src="https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=128" class="res-logo" alt="Logo">
-                                <div class="res-title">DeepSeek</div>
-                            </div>
-                            <span class="tag tag-code">程式推理</span>
-                        </div>
-                        <div class="res-body">
-                            <p>開源模型霸主。程式撰寫與數學邏輯推理表現驚人。</p>
-                        </div>
-                        <div class="res-footer">
-                            <a href="https://chat.deepseek.com/" target="_blank" class="btn-go">前往使用 <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="more-container">
-                    <a href="tools.html" class="btn-more">
-                        查看完整工具庫 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </section>
-
-            <section id="ethics">
-                <h2 class="section-title"><i class="fa-solid fa-gavel"></i> 學術倫理與規範</h2>
-                <div class="alert-box">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <div>
-                        <h3>使用 AI 的黃金原則</h3>
-                        <p>1. <strong>Do Not Copy-Paste Blindly:</strong> 嚴禁未經查核直接複製貼上。</p>
-                        <p>2. <strong>Transparency:</strong> 若作業中使用 AI 協助，請務必標註說明。</p>
-                        <p>3. <strong>Privacy:</strong> 勿將個資或數據輸入到公開的 AI 平台。</p>
-                        <hr style="border: 0; border-top: 1px solid #e6dbb9; margin: 10px 0;">
-                        <p><strong>APA 7 引用範例：</strong><br>
-                        <em>OpenAI. (2023). ChatGPT (Mar 14 version) [Large language model]. https://chat.openai.com/chat</em></p>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+                </a>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <p>Copyright © 新生學校財團法人新生醫護管理專科學校</p>
-            <p>325桃園市龍潭區中豐路高平段418號</p>
-            <p>TEL: (03)411-7578 轉 250 & 251 | E-Mail: <a href="mailto:lib@hsc.edu.tw">lib@hsc.edu.tw</a></p>
+        <div class="container">
+            <h6 class="fw-bold mb-3">Copyright © 新生學校財團法人新生醫護管理專科學校圖書館</h6>
+            
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>325桃園市龍潭區中豐路高平段418號</p>
+            
+            <p class="mb-1">
+                <i class="fas fa-phone me-2"></i>TEL: (03)411-7578 轉 250 & 251 
+                <span class="mx-2">|</span> 
+                <i class="fas fa-envelope me-2"></i>E-Mail: lib@hsc.edu.tw
+            </p>
+            
+            <div class="footer-divider">
+                <span class="small me-3 opacity-75">更新日期: 115-01-05</span>
+                <span class="badge bg-secondary rounded-pill">瀏覽次數: 52671</span>
+            </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function loadVideo(container, videoId) {
-            var iframe = document.createElement('iframe');
-            iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1');
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-            iframe.setAttribute('allowfullscreen', '');
-            container.innerHTML = '';
-            container.appendChild(iframe);
+        function doSearch() {
+            const val = document.getElementById('searchInput').value;
+            if(val) window.location.href = `search.html?q=${encodeURIComponent(val)}`;
         }
+        function handleEnter(e) { if(e.key==='Enter') doSearch(); }
     </script>
-
 </body>
 </html>
