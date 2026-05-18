@@ -161,10 +161,10 @@ const allResources = [
     { id: 203, category: "電子期刊", title: "中文電子雜誌服務平台", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>以數位化形式呈現雜誌內容，支援手機平板閱讀。", link: "https://hsc.idm.oclc.org/login?url=https://portal.eread.com.tw/hsc", image: "acer-walkinglibrary.jpg" },
 
     // --- 語言學習資源 ---
-    { id: 301, category: "語言學習", title: "FUNDAY英語學院線上平台", desc: "【英文】國內唯一跨產官學界肯定的專業英語線上學習系統。", link: "https://hsc.idm.oclc.org/login?url=https://hunteq.com/sso/funday_taebdc" },
-    { id: 302, category: "語言學習", title: "空中英語教室影音典藏 - 空英頻道", desc: "【英文】收錄空中英語教室雜誌之廣播、電視教學節目內容。", link: "https://hsc.idm.oclc.org/login?url=https://tccs5.webenglish.tv/" },
+    { id: 301, category: "語言學習", title: "FUNDAY英語學院線上平台", desc: "【英文】採用CEFR國際標準分級，工作日天天更新時事與商用教材，搭配逐句影音講解與多益擬真測驗，全方位鍛鍊聽讀力。", link: "https://hsc.idm.oclc.org/login?url=https://hunteq.com/sso/funday_taebdc" },
+    { id: 302, category: "語言學習", title: "空中英語教室影音典藏 - 空英頻道", desc: "【英文】整合經典英語雜誌教材，提供每日互動教學影音與廣播講解，支援逐句朗讀與文法解析，為校園增進聽說讀寫首選。", link: "https://hsc.idm.oclc.org/login?url=https://tccs5.webenglish.tv/" },
     { id: 303, category: "語言學習", title: "空中英語教室 - 彭蒙惠英語職場頻道", desc: "【英文】收錄35個與職場工作有關的學習課程。", link: "https://hsc.idm.oclc.org/login?url=https://tccs5.webenglish.tv/" },
-    { id: 304, category: "語言學習", title: "LiveABC 英日語 AI 互動學習資料庫", desc: "【英/日】整合英語與日語的AI互動學習資源。", link: "https://hsc.idm.oclc.org/login?url=https://library.liveabc.com/" },
+    { id: 304, category: "語言學習", title: "LiveABC 英日語 AI 互動學習資料庫", desc: "【英/日】整合優質英日語多媒體教材，結合AI語音辨識技術，提供即時口說修正、情境對話與檢定模擬，全方位打造互動環境。", link: "https://hsc.idm.oclc.org/login?url=https://library.liveabc.com/" },
     { id: 305, category: "語言學習", title: "NHK WORLD-JAPAN (日本國際傳媒)", desc: "【日文】提供各種日語學習相關的教學電視與廣播節目直播。", link: "https://www3.nhk.or.jp/nhkworld/" },
     { id: 306, category: "語言學習", title: "Live & Programs (NHK電視廣播)", desc: "【日文】提供NHK新聞、生活、文化藝術等主題的線上電視與廣播節目直播。", link: "https://www3.nhk.or.jp/nhkworld/en/live/" },
     { id: 307, category: "語言學習", title: "Learn Japanese (NHK日語學習)", desc: "【日文】專為日語學習者設計的教學節目。", link: "https://www3.nhk.or.jp/nhkworld/en/learnjapanese/" },
