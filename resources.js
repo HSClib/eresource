@@ -172,15 +172,15 @@ const allResources = [
     { id: 309, category: "語言學習", title: "探索 NHK World Japan (華語版)", desc: "【多語】由日本NHK提供，內容包羅萬象的影片及節目單元。", link: "https://www3.nhk.or.jp/nhkworld/zt/" },
 
     // --- 影音資源 ---
-    { id: 401, category: "影音資源", title: "iVideo影音串流隨選服務", desc: "【限校內使用】使用者可透過網際網路或內部網路，從遠端連結隨選視訊伺服器。", link: "http://libivideo.hsc.edu.tw/" },
-    { id: 402, category: "影音資源", title: "KMOVIE雲端公播電影網", desc: "提供公播使用的影音串流平台。", link: "https://hsc.idm.oclc.org/login?url=https://kmovie.twedu.com.tw/" },
-    { id: 403, category: "影音資源", title: "教室電影院公播大平台", desc: "全國首創將公播及家用版電影置於線上串流的平台。", link: "https://hsc.idm.oclc.org/login?url=https://hsc-app-visionmedia-com-tw.hsc.idm.oclc.org" },
-    { id: 404, category: "影音資源", title: "哈佛商業評論全球繁體中文版影音知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄270餘段以上國際級大師演講或對談影音精彩內容。", link: "https://hsc.idm.oclc.org/login?url=https://hbr.infolinker.com.tw/index_video.php" },
-    { id: 405, category: "影音資源", title: "BBC 文化教學影音網", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄AI理工數位、醫學護理以及呼叫助產士影集等三個領域共300部影片。", link: "https://hsc.idm.oclc.org/login?url=https://harvest-video.com/user.do?command=checkIP" },
-    { id: 406, category: "影音資源", title: "經理人管理知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>專為企業主管與決策者打造。", link: "https://hsc.idm.oclc.org/login?url=https://elib.infolinker.com.tw/mschool/login_mschool.php" },
-    { id: 407, category: "影音資源", title: "國家圖書館數位影音服務系統", desc: "提供未到館的讀者精采、優質的講座、演講、研討會等影音內容。", link: "https://dava.ncl.edu.tw/" },
-    { id: 408, category: "影音資源", title: "Scholastic (美國學樂集團YouTube頻道)", desc: "【西文】提供不同年齡層兒童與青少年的故事朗讀、插畫教學影片。", link: "https://www.youtube.com/user/TheScholasticChannel/videos" },
-    { id: 409, category: "影音資源", title: "Puffin Storytime (英國海鸚說故事時間)", desc: "【西文】由 Puffin Books 提供繪本與青少年讀本的說故事影片。", link: "https://www.youtube.com/user/puffinbooks1/videos" },
+    { id: 401, category: "影音資源", title: "iVideo影音串流隨選服務", desc: "【限校內使用】專為館藏打造的教育OTT平台，整合公視與線上課程，支援跨載具隨選視訊，更可由機構自主管理優質影音。", link: "http://libivideo.hsc.edu.tw/" },
+    { id: 402, category: "影音資源", title: "KMOVIE雲端公播電影網", desc: "專為校園打造的合法線上串流平台，匯集多元主題電影，支援跨裝置隨選隨看，是師生影音教學與休閒的最佳選擇。", link: "https://hsc.idm.oclc.org/login?url=https://kmovie.twedu.com.tw/" },
+    { id: 403, category: "影音資源", title: "教室電影院公播大平台", desc: "文教界愛用的線上公播平台，精選數百部兼具教育與娛樂的影展好片，涵蓋多元議題並附學習單，教學首選。", link: "https://hsc.idm.oclc.org/login?url=https://hsc-app-visionmedia-com-tw.hsc.idm.oclc.org" },
+    { id: 404, category: "影音資源", title: "哈佛商業評論全球繁體中文版影音知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄數百段國際頂尖商管大師的精彩訪談影音，配備繁體中文字幕，助師生與全球前沿的管理策略無縫接軌。", link: "https://hsc.idm.oclc.org/login?url=https://hbr.infolinker.com.tw/index_video.php" },
+    { id: 405, category: "影音資源", title: "BBC 文化教學影音網", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>引進英國BBC頂級紀錄片，涵蓋科學、商管、歷史文化等多元領域，以嚴謹考證與高畫質影音豐富通識教學。", link: "https://hsc.idm.oclc.org/login?url=https://harvest-video.com/user.do?command=checkIP" },
+    { id: 406, category: "影音資源", title: "經理人管理知識庫", desc: "<span class='text-danger fw-bold'>【臺灣學術電子資源永續發展計畫購置】</span>收錄歷年管理精華，將艱澀理論轉化為圖解與實務案例，涵蓋領導行銷與職場技能，是接軌產業的最佳指南。", link: "https://hsc.idm.oclc.org/login?url=https://elib.infolinker.com.tw/mschool/login_mschool.php" },
+    { id: 407, category: "影音資源", title: "國家圖書館數位影音服務系統", desc: "國家級數位典藏平台，完整收錄本土學術講座、作家專訪與珍貴文史影音，免費提供大眾無距離的研究與學習。", link: "https://dava.ncl.edu.tw/" },
+    { id: 408, category: "影音資源", title: "Scholastic (美國學樂集團YouTube頻道)", desc: "【西文】全球最大童書出版商的官方頻道，匯集經典繪本預告、作家專訪與趣味教學影音，是親師啟發兒童閱讀的最佳資源。", link: "https://www.youtube.com/user/TheScholasticChannel/videos" },
+    { id: 409, category: "影音資源", title: "Puffin Storytime (英國海鸚說故事時間)", desc: "【西文】英國頂尖童書品牌推出的影音單元，由名人與作家生動演繹經典繪本，搭配趣味動畫，是培養英文聽力的絕佳媒介。", link: "https://www.youtube.com/user/puffinbooks1/videos" },
 
     // --- 線上教學課程 ---
     { id: 501, category: "線上教學課程", title: "親子天下-翻轉教育", desc: "<span class='text-danger fw-bold'>【如有需求請向圖書館申請】</span>本平台為全台領先的教師專業成長平台，提供多元創新教案、資深名師觀點及實務教學資源。致力於連結第一線教育工作者，分享專業經驗，協助老師跨越教學挑戰，共同翻轉課堂價值，落實以學生為本的教育願景。", link: "https://flipedu.parenting.com.tw/" },
