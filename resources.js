@@ -20,19 +20,19 @@ const allResources = [
         link: "http://cdg.onlineplus.com.tw/cdg/do/Index",
         manual: "https://drive.google.com/file/d/18BgXnRsZgUAuxTqrDzTQFtGTIuOnjQW-/view"
     },
-    { id: 5, category: "電子資料庫", title: "EBSCO CINAHL Complete", desc: "本資料庫是全球最權威的護理與輔助醫學資源，收錄上千種全文期刊。涵蓋實證護理與物理治療等學科，提供精確索引與臨床實務指南，是推動高品質護理研究的核心工具。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/results?q=&autocorrect=y&db=ccm&expanders=concept&limiters=FT%3AY&searchMode=boolean&searchSegment=all-results&skipResultsFetch=true&sqId=sq%3Ad3b79eed-edf5-453c-9e3e-3b98b158b8f3" },
+    { id: 5, category: "電子資料庫", title: "EBSCO CINAHL Complete", desc: "本資料庫是全球最權威的護理與輔助醫學資源，收錄上千種全文期刊。涵蓋實證護理與物理治療等學科，提供精確索引與臨床實務指南，是推動高品質護理研究的核心工具。", link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&db=ccm" },
     { 
         id: 6, 
         category: "電子資料庫", 
         title: "EBSCO CINAHL with Full Text (8人版)", 
         desc: "是護理學與專職醫療領域中最權威的文獻資料庫，提供核心護理期刊、書目、實證照護指引及快速教學課程。它收錄廣泛的全文資源，涵蓋護理學、生物醫學、替代醫學等，是護理人員、學生與研究者進行實證臨床作業不可或缺的工具。(使用限制：同時段最大上線人數8人)", 
-        link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&defaultdb=c8h",
+        link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&db=c8h",
         manual: "https://docs.google.com/presentation/d/1adPGU296ryQjmRrSrwlUQddxf4CtStNW/edit?slide=id.p1#slide=id.p1"
     },
-    { id: 7, category: "電子資料庫", title: "EBSCO Education Research Complete", desc: "本資料庫涵蓋從學前教育至高等教育的所有學科領域，提供數千種權威期刊全文。透過精確的課程與教學資源分析，為教育研究者與現場教師提供深度的學術支援。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/results?q=&autocorrect=y&db=ehh&expanders=concept&limiters=FT%3AY&searchMode=boolean&searchSegment=all-results&skipResultsFetch=true&sqId=sq%3A4b2b415e-0ce2-462f-b8c2-ba84b395985c" },
-    { id: 8, category: "電子資料庫", title: "EBSCO ERIC", desc: "本資料庫源自美國教育部，是全球最具權威的教育研究資源。收錄期刊、論文及政策報告，涵蓋各級教育實務，為學術研究與課程設計提供全面且精確的文獻支援。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/results?q=&autocorrect=y&db=eric&expanders=concept&limiters=FT%3AY&searchMode=boolean&searchSegment=all-results&skipResultsFetch=true&sqId=sq%3A025e8444-d3a9-4bd7-9940-faa6f65cdfe5" },
-    { id: 9, category: "電子資料庫", title: "EBSCO OmniFile Full Text Select", desc: "本資料庫整合科學、人文、商業及教育等多元領域，收錄數千種核心期刊全文。透過高品質的跨學科文獻，為學術研究與通識教學提供精確、一站式的資訊資源支援。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/results?q=&autocorrect=y&db=ofs&expanders=concept&limiters=FT%3AY&searchMode=boolean&searchSegment=all-results&skipResultsFetch=true&sqId=sq%3Abaadec33-d5c4-4cf7-9631-86d5950b90fd" },
-    { id: 10, category: "電子資料庫", title: "EBSCO CINAHL Ultimate", desc: "CINAHL Ultimate是新推出的護理和相關專職醫療研究的權威資源，比任何其他資料庫提供更多收錄在 CINAHL 索引中最常用的期刊全文。 該資料庫涵蓋 50 多種護理專業科別，還包括快速課程、實證護理表、CEU 進修教育模組和研究儀器。", link: "https://hsc.idm.oclc.org/login?url=https://research.ebsco.com/c/57o3ql/search/results?q=&autocorrect=y&db=cul&expanders=concept&limiters=FT%3AY&searchMode=boolean&searchSegment=all-results&skipResultsFetch=true&sqId=sq%3A60b3f0fd-6f29-41f6-b3a9-1a6539f49ffc&p=1" },
+    { id: 7, category: "電子資料庫", title: "EBSCO Education Research Complete", desc: "本資料庫涵蓋從學前教育至高等教育的所有學科領域，提供數千種權威期刊全文。透過精確的課程與教學資源分析，為教育研究者與現場教師提供深度的學術支援。", link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&db=ehh" },
+    { id: 8, category: "電子資料庫", title: "EBSCO ERIC", desc: "本資料庫源自美國教育部，是全球最具權威的教育研究資源。收錄期刊、論文及政策報告，涵蓋各級教育實務，為學術研究與課程設計提供全面且精確的文獻支援。", link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&db=eric" },
+    { id: 9, category: "電子資料庫", title: "EBSCO OmniFile Full Text Select", desc: "本資料庫整合科學、人文、商業及教育等多元領域，收錄數千種核心期刊全文。透過高品質的跨學科文獻，為學術研究與通識教學提供精確、一站式的資訊資源支援。", link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&db=ofs" },
+    { id: 10, category: "電子資料庫", title: "EBSCO CINAHL Ultimate", desc: "CINAHL Ultimate是新推出的護理和相關專職醫療研究的權威資源，比任何其他資料庫提供更多收錄在 CINAHL 索引中最常用的期刊全文。 該資料庫涵蓋 50 多種護理專業科別，還包括快速課程、實證護理表、CEU 進修教育模組和研究儀器。", link: "https://hsc.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?profile=ehost&db=cul" },
     { id: 11, category: "電子資料庫", title: "Free eMedical Journals", desc: "本平台匯集全球數千種免費全文醫學期刊，提供即時的學術文獻檢索。透過推動開放獲取，打破資訊門檻，是醫護人員與研究者獲取高品質、零預算學術資源的權威入口。", link: "http://www.freemedicaljournals.com/" },
     { 
         id: 12, 
